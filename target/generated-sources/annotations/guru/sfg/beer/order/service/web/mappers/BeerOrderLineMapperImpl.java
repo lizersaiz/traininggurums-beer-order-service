@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2020-10-15T02:01:11+0200",
-    comments = "version: 1.3.0.Final, compiler: Eclipse JDT (IDE) 1.3.1100.v20200828-0941, environment: Java 14.0.2 (Oracle Corporation)"
+    date = "2020-10-29T18:00:01+0100",
+    comments = "version: 1.3.0.Final, compiler: javac, environment: Java 11.0.7 (Oracle Corporation)"
 )
 @Component
 public class BeerOrderLineMapperImpl implements BeerOrderLineMapper {
@@ -27,14 +27,15 @@ public class BeerOrderLineMapperImpl implements BeerOrderLineMapper {
 
         BeerOrderLineDtoBuilder beerOrderLineDto = BeerOrderLineDto.builder();
 
-        beerOrderLineDto.beerId( line.getBeerId() );
-        beerOrderLineDto.createdDate( dateMapper.asOffsetDateTime( line.getCreatedDate() ) );
         beerOrderLineDto.id( line.getId() );
-        beerOrderLineDto.lastModifiedDate( dateMapper.asOffsetDateTime( line.getLastModifiedDate() ) );
-        beerOrderLineDto.orderQuantity( line.getOrderQuantity() );
         if ( line.getVersion() != null ) {
             beerOrderLineDto.version( line.getVersion().intValue() );
         }
+        beerOrderLineDto.createdDate( dateMapper.asOffsetDateTime( line.getCreatedDate() ) );
+        beerOrderLineDto.lastModifiedDate( dateMapper.asOffsetDateTime( line.getLastModifiedDate() ) );
+        beerOrderLineDto.upc( line.getUpc() );
+        beerOrderLineDto.beerId( line.getBeerId() );
+        beerOrderLineDto.orderQuantity( line.getOrderQuantity() );
 
         return beerOrderLineDto.build();
     }
@@ -47,14 +48,15 @@ public class BeerOrderLineMapperImpl implements BeerOrderLineMapper {
 
         BeerOrderLineBuilder beerOrderLine = BeerOrderLine.builder();
 
-        beerOrderLine.beerId( dto.getBeerId() );
-        beerOrderLine.createdDate( dateMapper.asTimestamp( dto.getCreatedDate() ) );
         beerOrderLine.id( dto.getId() );
-        beerOrderLine.lastModifiedDate( dateMapper.asTimestamp( dto.getLastModifiedDate() ) );
-        beerOrderLine.orderQuantity( dto.getOrderQuantity() );
         if ( dto.getVersion() != null ) {
             beerOrderLine.version( dto.getVersion().longValue() );
         }
+        beerOrderLine.createdDate( dateMapper.asTimestamp( dto.getCreatedDate() ) );
+        beerOrderLine.lastModifiedDate( dateMapper.asTimestamp( dto.getLastModifiedDate() ) );
+        beerOrderLine.beerId( dto.getBeerId() );
+        beerOrderLine.upc( dto.getUpc() );
+        beerOrderLine.orderQuantity( dto.getOrderQuantity() );
 
         return beerOrderLine.build();
     }
